@@ -31,31 +31,34 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-  test('returns animals', async() => {
+  test('returns s', async() => {
 
     const expectation = [
       {
         'id': 1,
-        'name': 'bessie',
-        'coolfactor': 3,
-        'owner_id': 1
+        'name': 'Lemon Cello',
+        'coolfactor': 9,
+        'category': 'citrus',
+        'crisp': true
       },
       {
         'id': 2,
-        'name': 'jumpy',
-        'coolfactor': 4,
-        'owner_id': 1
+        'name': 'Lime',
+        'coolfactor': 3,
+        'category':'citrus' ,
+        'crisp': false
       },
       {
         'id': 3,
-        'name': 'spot',
+        'name': 'Watermelon',
         'coolfactor': 10,
-        'owner_id': 1
+        'category': 'sweet',
+        'crisp': true
       }
     ];
 
     const data = await fakeRequest(app)
-      .get('/animals')
+      .get('/lacroixs')
       .expect('Content-Type', /json/)
       .expect(200);
 
