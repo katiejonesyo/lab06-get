@@ -1,39 +1,11 @@
-require('dotenv').config()
+require('dotenv').config();
+require('./lib/client').connect();
 
-const express = require('express'); 
-const app = express();
-const PORT = process.env.PORT || 3000;
+const app = require('./lib/app');
 
-
-
-app.get('/', (req, res) => {
-    console.log(new Date());
-    res.json([
-        {
-            name: 'jim'
-        },
-        {
-            name: 'jam'
-        }
-    ]);
-});
-
-app.get('/pets', (req, res) => {
-    const pets = [
-        {
-            name: 'dogs'
-        }, 
-        {
-            name: 'cats'
-        }, 
-        {
-            name: 'hamster'
-        }
-    ];
-
-    res.json(pets);    
-});
+const PORT = process.env.PORT || 7890;
 
 app.listen(PORT, () => {
-    console.log(`Example app listening at http://localhost:${PORT}`);
+  // eslint-disable-next-line no-console
+  console.log(`Started on ${PORT}`);
 });
