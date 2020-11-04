@@ -110,7 +110,7 @@ describe('app routes', () => {
         .expect(200);
         
       expect(data.body).toEqual(expectation);
-      expect(allLacroixs.body.length).toEqual(0);
+      expect(allLacroixs.body.length).toEqual(4);
   });
 
 
@@ -170,7 +170,7 @@ describe('app routes', () => {
           .expect('Content-Type', /json/)
           .expect(200);
 
-          expect(getData.body).toEqual(expectation);
+          expect(data.body).toEqual(expectation);
       });
 
   });
