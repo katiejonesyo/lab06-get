@@ -63,5 +63,51 @@ describe('app routes', () => {
       .expect(200);
 
     expect(data.body).toEqual(expectation);
+    test('returns a single banjo', async() => {
+      const expectation = {
+        id: 1,
+        brand: 'gold tone',
+        noise_level: 3,
+        owner_id: 1
+      };
+  
+      const data = await fakeRequest(app)
+        .get('/banjos/1')
+        .expect('Content-Type', /json/)
+        .expect(200);
+  
+      expect(data.body).toEqual(expectation);
+    });
+
+    test.only('adds a lacroixs to the DB and returns it', async() => {
+      const expectation = {
+        id: 1,
+        name: 'Lemon Cello',
+        cool_factor: 9,
+        category: 'citrus',
+        crisp: true
+      };
+  
+      const data = await fakeRequest(app)
+        .post('/lacroixs')
+        .send({
+          name: 'Lemon Cello',
+          cool_factor: 9,
+          category: 'citrus',
+          crisp: true
+        })
+        .expect('Content-Type', /json/)
+        .expect(200);
+  
+      const allLacroixs = await fakeRequest(app)
+        .get('/lacroixs')
+        .expect('Content-Type', /json/)
+        .expect(200);
+  
+
+      expect(data.body).toEqual(expectation);
+      expect(allLacroixs.body.length).toEqual(4);
   });
+  });
+})
 });
