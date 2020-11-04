@@ -31,7 +31,7 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-  test('returns s', async() => {
+  test('returns lacroixs', async() => {
 
     const expectation = [
       {
@@ -54,8 +54,8 @@ describe('app routes', () => {
         'coolfactor': 10,
         'category': 'sweet',
         'crisp': true
-      }
-    ];
+      }];
+      
 
     const data = await fakeRequest(app)
       .get('/lacroixs')
@@ -63,16 +63,21 @@ describe('app routes', () => {
       .expect(200);
 
     expect(data.body).toEqual(expectation);
-    test('returns a single banjo', async() => {
+
+  });
+
+
+    test('returns a single lacroixs', async() => {
       const expectation = {
-        id: 1,
-        brand: 'gold tone',
-        noise_level: 3,
-        owner_id: 1
+        id: 3,
+        name: 'Watermelon',
+        cool_factor: 10,
+        category: 'sweet',
+        crisp: true
       };
   
       const data = await fakeRequest(app)
-        .get('/banjos/1')
+        .get('/lacroixs/1')
         .expect('Content-Type', /json/)
         .expect(200);
   
@@ -103,11 +108,70 @@ describe('app routes', () => {
         .get('/lacroixs')
         .expect('Content-Type', /json/)
         .expect(200);
-  
-
+        
       expect(data.body).toEqual(expectation);
-      expect(allLacroixs.body.length).toEqual(4);
+      expect(allLacroixs.body.length).toEqual(0);
   });
+
+
+    test.only('modifies a lacroixs inside of DB and returns it', async() => {
+        const expectation = 
+            {
+              'id': 1,
+              'name': 'Lemon Cello',
+              'cool_factor': 9,
+              'category': 'citrus',
+              'crisp': true
+        };
+
+        const data = await fakeRequest(app)
+          .put('/lacroixs/1')
+          .send({
+              'id': 1,
+              'name': 'Lemon Cello',
+              'cool_factor': 9,
+              'category': 'citrus',
+              'crisp': true
+          })
+          .expect('Content-Type', /json/)
+          .expect(200);
+
+          expect(data.body).toEqual(expectation);
+    });
+
+
+      test.only('deletes a lacroixs', async() => {
+        const expectation = [
+          {
+            'id': 1,
+            'name': 'Lemon Cello',
+            'cool_factor': 9,
+            'category': 'citrus',
+            'crisp': true
+          },
+          {
+            'id': 2,
+            'name': 'Lime',
+            'cool_factor': 3,
+            'category':'citrus' ,
+            'crisp': false
+          },
+          {
+            'id': 3,
+            'name': 'Watermelon',
+            'cool_factor': 10,
+            'category': 'sweet',
+            'crisp': true
+          }
+        ];
+
+          const data = await fakeRequest(app)
+          .delete('/lacroixs/3')
+          .expect('Content-Type', /json/)
+          .expect(200);
+
+          expect(getData.body).toEqual(expectation);
+      });
+
   });
-})
 });
