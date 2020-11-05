@@ -38,25 +38,28 @@ describe('app routes', () => {
         'id': 1,
         'name': 'Lemon Cello',
         'cool_factor': 9,
-        'category': 'citrus',
+        'category': 1,
         'crisp': true,
-        'owner_id': 1
+        'owner_id': 1,
+        'categories': 'citrus'
       },
       {
         'id': 2,
         'name': 'Lime',
         'cool_factor': 3,
-        'category':'citrus' ,
+        'category': 1 ,
         'crisp': false,
-        'owner_id': 1
+        'owner_id': 1,
+        'categories': 'citrus'
       },
       {
         'id': 3,
         'name': 'Watermelon',
         'cool_factor': 10,
-        'category': 'sweet',
+        'category': 2,
         'crisp': true,
-        'owner_id': 1
+        'owner_id': 1,
+        'categories': 'sweet'
       }];
       
 
@@ -75,9 +78,10 @@ describe('app routes', () => {
         'id': 3,
         'name': 'Watermelon',
         'cool_factor': 10,
-        'category': 'sweet',
+        'category': 2,
         'crisp': true,
-        'owner_id': 1
+        'owner_id': 1,
+        'categories': 'sweet'
       };
   
       const data = await fakeRequest(app)
@@ -93,9 +97,10 @@ describe('app routes', () => {
         id: 4,
         name: 'Key Lime',
         cool_factor: 7,
-        category: 'citrus',
+        category: 1,
         crisp: true,
-        owner_id: 1
+        owner_id: 1,
+        categories: 'citrus'
       };
   
       const data = await fakeRequest(app)
@@ -103,9 +108,10 @@ describe('app routes', () => {
         .send({
           name: 'Key Lime',
           cool_factor: 7,
-          category: 'citrus',
+          category: 1,
           crisp: true,
-          owner_id: 1
+          owner_id: 1,
+          categories: 'citrus'
         
         })
         .expect('Content-Type', /json/)
@@ -127,9 +133,10 @@ describe('app routes', () => {
               'id': 1,
               'name': 'Jim',
               'cool_factor': 9,
-              'category': 'citrus',
+              'category': 1,
               'crisp': true,
-              'owner_id': 1
+              'owner_id': 1,
+              'categories': 'citrus'
         };
 
         const data = await fakeRequest(app)
@@ -138,9 +145,10 @@ describe('app routes', () => {
               'id': 1,
               'name': 'Jim',
               'cool_factor': 9,
-              'category': 'citrus',
+              'category': 1,
               'crisp': true,
-              'owner_id': 1
+              'owner_id': 1,
+              'categories': 'citrus'
           })
           .expect('Content-Type', /json/)
           .expect(200);
