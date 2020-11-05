@@ -31,7 +31,7 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-  test('returns lacroixs', async() => {
+  test.only('returns lacroixs', async() => {
 
     const expectation = [
       {
@@ -149,7 +149,7 @@ describe('app routes', () => {
     });
 
 
-      test.only('deletes a lacroixs', async() => {
+      test('deletes a lacroixs', async() => {
           const data = await fakeRequest(app)
           .delete('/lacroixs/3')
           .expect('Content-Type', /json/)

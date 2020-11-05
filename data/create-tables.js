@@ -20,7 +20,7 @@ async function run() {
 
                   CREATE TABLE categories (
                     id SERIAL PRIMARY KEY,
-                    name VARCHAR(512) NOT NULL
+                    names VARCHAR(512) NOT NULL
                   );
 
                 CREATE TABLE lacroixs (

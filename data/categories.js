@@ -1,11 +1,11 @@
 module.exports = [
 {
-     name:'citrus'
+     names:'citrus'
 },
 {
-     name:'sweet'
+     names:'sweet'
 },
 {
-     name:'sour'
+     names:'sour'
 }
 ];

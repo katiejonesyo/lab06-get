@@ -25,10 +25,10 @@ async function run() {
     await Promise.all(
       categories.map(category => {
         return client.query(`
-                    INSERT INTO categories (name)
+                    INSERT INTO categories (names)
                     VALUES ($1);
                 `,
-        [category.name]);
+        [category.names]);
       })
     );
       
@@ -38,10 +38,10 @@ async function run() {
       lacroixs.map(lacroix => {
         return client.query(`
 
-                    INSERT INTO lacroixs (category_id, name, cool_factor, category, crisp)
-                    VALUES ($1, $2, $3, $4, $5);
+                    INSERT INTO lacroixs (name, cool_factor, category, crisp)
+                    VALUES ($1, $2, $3, $4);
                 `,
-        [lacroixs.category_id, lacroixs.name, lacroixs.cool_factor, lacroixs.category, lacroixs.crisp]);
+        [lacroixs.name, lacroixs.cool_factor, lacroixs.category, lacroixs.crisp]);
 
       })
     );
