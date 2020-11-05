@@ -26,10 +26,10 @@ async function run() {
     await Promise.all(
       lacroixs.map(lacroixs => {
         return client.query(`
-                    INSERT INTO lacroixs (id, name, cool_factor, category, crisp)
-                    VALUES ($1, $2, $3, $4, $5);
+                    INSERT INTO lacroixs (id, name, cool_factor, category, crisp, owner_id)
+                    VALUES ($1, $2, $3, $4, $5, $6);
                 `,
-        [lacroixs.id, lacroixs.name, lacroixs.cool_factor, lacroixs.category, lacroixs.crisp]);
+        [lacroixs.id, lacroixs.name, lacroixs.cool_factor, lacroixs.category, lacroixs.crisp, user.id]);
       })
     );
     
