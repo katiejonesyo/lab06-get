@@ -27,9 +27,10 @@ async function run() {
                     id SERIAL PRIMARY KEY NOT NULL,
                     name VARCHAR(512) NOT NULL,
                     cool_factor INTEGER NOT NULL,
-                    category VARCHAR(512) NOT NULL,
+                    category INTEGER NOT NULL REFERENCES categories(id),
                     crisp BOOLEAN NOT NULL,
                     owner_id INTEGER NOT NULL REFERENCES users(id)
+
                 
             );
         `);

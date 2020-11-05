@@ -3,7 +3,7 @@ module.exports = [
     'id': 1,
     'name': 'Lemon Cello',
     'cool_factor': 9,
-    'category': 'citrus',
+    'category': 1,
     'crisp': true,
    
   },
@@ -11,7 +11,7 @@ module.exports = [
     'id': 2,
     'name': 'Lime',
     'cool_factor': 3,
-    'category':'citrus' ,
+    'category':1 ,
     'crisp': false
     
   },
@@ -19,7 +19,7 @@ module.exports = [
     'id': 3,
     'name': 'Watermelon',
     'cool_factor': 10,
-    'category': 'sweet',
+    'category': 2,
     'crisp': true
   }
 ];
