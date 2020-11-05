@@ -35,12 +35,14 @@ async function run() {
     const user = users[0].rows[0];
 
     await Promise.all(
-      lacroixs.map(lacroixs => {
+      lacroixs.map(lacroix => {
         return client.query(`
+
                     INSERT INTO lacroixs (category_id, name, cool_factor, category, crisp)
                     VALUES ($1, $2, $3, $4, $5);
                 `,
         [lacroixs.category_id, lacroixs.name, lacroixs.cool_factor, lacroixs.category, lacroixs.crisp]);
+
       })
     );
     

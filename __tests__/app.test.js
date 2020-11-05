@@ -37,23 +37,26 @@ describe('app routes', () => {
       {
         'id': 1,
         'name': 'Lemon Cello',
-        'coolfactor': 9,
+        'cool_factor': 9,
         'category': 'citrus',
-        'crisp': true
+        'crisp': true,
+        'owner_id': 1
       },
       {
         'id': 2,
         'name': 'Lime',
-        'coolfactor': 3,
+        'cool_factor': 3,
         'category':'citrus' ,
-        'crisp': false
+        'crisp': false,
+        'owner_id': 1
       },
       {
         'id': 3,
         'name': 'Watermelon',
-        'coolfactor': 10,
+        'cool_factor': 10,
         'category': 'sweet',
-        'crisp': true
+        'crisp': true,
+        'owner_id': 1
       }];
       
 
@@ -69,37 +72,41 @@ describe('app routes', () => {
 
     test('returns a single lacroixs', async() => {
       const expectation = {
-        id: 3,
-        name: 'Watermelon',
-        cool_factor: 10,
-        category: 'sweet',
-        crisp: true
+        'id': 3,
+        'name': 'Watermelon',
+        'cool_factor': 10,
+        'category': 'sweet',
+        'crisp': true,
+        'owner_id': 1
       };
   
       const data = await fakeRequest(app)
-        .get('/lacroixs/1')
+        .get('/lacroixs/3')
         .expect('Content-Type', /json/)
         .expect(200);
   
       expect(data.body).toEqual(expectation);
     });
 
-    test.only('adds a lacroixs to the DB and returns it', async() => {
+    test('adds a lacroixs to the DB and returns it', async() => {
       const expectation = {
-        id: 1,
-        name: 'Lemon Cello',
-        cool_factor: 9,
+        id: 4,
+        name: 'Key Lime',
+        cool_factor: 7,
         category: 'citrus',
-        crisp: true
+        crisp: true,
+        owner_id: 1
       };
   
       const data = await fakeRequest(app)
         .post('/lacroixs')
         .send({
-          name: 'Lemon Cello',
-          cool_factor: 9,
+          name: 'Key Lime',
+          cool_factor: 7,
           category: 'citrus',
-          crisp: true
+          crisp: true,
+          owner_id: 1
+        
         })
         .expect('Content-Type', /json/)
         .expect(200);
@@ -114,24 +121,26 @@ describe('app routes', () => {
   });
 
 
-    test.only('modifies a lacroixs inside of DB and returns it', async() => {
+    test('modifies a lacroixs inside of DB and returns it', async() => {
         const expectation = 
             {
               'id': 1,
-              'name': 'Lemon Cello',
+              'name': 'Jim',
               'cool_factor': 9,
               'category': 'citrus',
-              'crisp': true
+              'crisp': true,
+              'owner_id': 1
         };
 
         const data = await fakeRequest(app)
           .put('/lacroixs/1')
           .send({
               'id': 1,
-              'name': 'Lemon Cello',
+              'name': 'Jim',
               'cool_factor': 9,
               'category': 'citrus',
-              'crisp': true
+              'crisp': true,
+              'owner_id': 1
           })
           .expect('Content-Type', /json/)
           .expect(200);
@@ -141,36 +150,18 @@ describe('app routes', () => {
 
 
       test.only('deletes a lacroixs', async() => {
-        const expectation = [
-          {
-            'id': 1,
-            'name': 'Lemon Cello',
-            'cool_factor': 9,
-            'category': 'citrus',
-            'crisp': true
-          },
-          {
-            'id': 2,
-            'name': 'Lime',
-            'cool_factor': 3,
-            'category':'citrus' ,
-            'crisp': false
-          },
-          {
-            'id': 3,
-            'name': 'Watermelon',
-            'cool_factor': 10,
-            'category': 'sweet',
-            'crisp': true
-          }
-        ];
-
           const data = await fakeRequest(app)
           .delete('/lacroixs/3')
           .expect('Content-Type', /json/)
           .expect(200);
 
-          expect(data.body).toEqual(expectation);
+          const allLacroixs = await fakeRequest(app)
+          .get('/lacroixs')
+          .expect('Content-Type', /json/)
+          .expect(200);
+
+          expect(data.body).toEqual('');
+          expect(allLacroixs.body.length).toEqual(2);
       });
 
   });
