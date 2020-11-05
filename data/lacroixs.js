@@ -4,7 +4,8 @@ module.exports = [
     'name': 'Lemon Cello',
     'cool_factor': 9,
     'category': 'citrus',
-    'crisp': true
+    'crisp': true,
+   
   },
   {
     'id': 2,
@@ -12,6 +13,7 @@ module.exports = [
     'cool_factor': 3,
     'category':'citrus' ,
     'crisp': false
+    
   },
   {
     'id': 3,

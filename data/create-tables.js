@@ -23,7 +23,7 @@ async function run() {
                     cool_factor INTEGER NOT NULL,
                     category VARCHAR(512) NOT NULL,
                     crisp BOOLEAN NOT NULL,
-                    owner_id INTEGER NOT NULL REFERENCES users(id)
+                    ownder_id INTEGER NOT NULL REFERENCES user(id)
                 
             );
         `);
