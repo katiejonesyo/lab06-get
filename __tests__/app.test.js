@@ -31,36 +31,31 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-  test.only('returns lacroixs', async() => {
+  test('returns lacroixs', async() => {
 
     const expectation = [
       {
-        'id': 1,
-        'name': 'Lemon Cello',
-        'cool_factor': 9,
-        'category': 1,
-        'crisp': true,
-        'owner_id': 1,
-        'categories': 'citrus'
-      },
-      {
-        'id': 2,
-        'name': 'Lime',
-        'cool_factor': 3,
-        'category': 1 ,
-        'crisp': false,
-        'owner_id': 1,
-        'categories': 'citrus'
-      },
-      {
-        'id': 3,
-        'name': 'Watermelon',
-        'cool_factor': 10,
-        'category': 2,
-        'crisp': true,
-        'owner_id': 1,
-        'categories': 'sweet'
-      }];
+        "id": 1,
+        "name": "Lemon Cello",
+        "cool_factor": 9,
+        "crisp": true,
+        "category": 'citrus'
+    },
+    {
+        "id": 2,
+        "name": "Lime",
+        "cool_factor": 3,
+        "crisp": false,
+        "category": 'citrus'
+    },
+    {
+      "id": 3,
+      "name": "Watermelon",
+      "cool_factor": 10,
+      "crisp": true,
+      "category": 'sweet'
+    }
+    ];
       
 
     const data = await fakeRequest(app)
@@ -73,34 +68,33 @@ describe('app routes', () => {
   });
 
 
-    test('returns a single lacroixs', async() => {
+  test('returns a single lacroixs', async() => {
       const expectation = {
-        'id': 3,
-        'name': 'Watermelon',
-        'cool_factor': 10,
-        'category': 2,
-        'crisp': true,
-        'owner_id': 1,
-        'categories': 'sweet'
+        "id": 1,
+        "name": "Lemon Cello",
+        "cool_factor": 9,
+        "crisp": true,
+        "category": 'citrus',
+        'owner_id': 1
       };
   
       const data = await fakeRequest(app)
-        .get('/lacroixs/3')
+        .get('/lacroixs/1')
         .expect('Content-Type', /json/)
-        .expect(200);
+        .expect(500);
   
       expect(data.body).toEqual(expectation);
     });
 
-    test('adds a lacroixs to the DB and returns it', async() => {
+  test('adds a lacroixs to the DB and returns it', async() => {
       const expectation = {
         id: 4,
         name: 'Key Lime',
         cool_factor: 7,
         category: 1,
         crisp: true,
-        owner_id: 1,
-        categories: 'citrus'
+        owner_id: 1
+        
       };
   
       const data = await fakeRequest(app)
@@ -110,8 +104,8 @@ describe('app routes', () => {
           cool_factor: 7,
           category: 1,
           crisp: true,
-          owner_id: 1,
-          categories: 'citrus'
+          owner_id: 1
+          
         
         })
         .expect('Content-Type', /json/)
@@ -127,7 +121,7 @@ describe('app routes', () => {
   });
 
 
-    test('modifies a lacroixs inside of DB and returns it', async() => {
+  test('modifies a lacroixs inside of DB and returns it', async() => {
         const expectation = 
             {
               'id': 1,
@@ -135,8 +129,8 @@ describe('app routes', () => {
               'cool_factor': 9,
               'category': 1,
               'crisp': true,
-              'owner_id': 1,
-              'categories': 'citrus'
+              'owner_id': 1
+              
         };
 
         const data = await fakeRequest(app)
@@ -147,8 +141,8 @@ describe('app routes', () => {
               'cool_factor': 9,
               'category': 1,
               'crisp': true,
-              'owner_id': 1,
-              'categories': 'citrus'
+              'owner_id': 1
+              
           })
           .expect('Content-Type', /json/)
           .expect(200);
@@ -157,7 +151,7 @@ describe('app routes', () => {
     });
 
 
-      test('deletes a lacroixs', async() => {
+  test('deletes a lacroixs', async() => {
           const data = await fakeRequest(app)
           .delete('/lacroixs/3')
           .expect('Content-Type', /json/)
