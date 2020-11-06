@@ -39,21 +39,21 @@ describe('app routes', () => {
         "name": "Lemon Cello",
         "cool_factor": 9,
         "crisp": true,
-        "category": 'citrus'
+        "category": 1
     },
     {
         "id": 2,
         "name": "Lime",
         "cool_factor": 3,
         "crisp": false,
-        "category": 'citrus'
+        "category": 1
     },
     {
       "id": 3,
       "name": "Watermelon",
       "cool_factor": 10,
       "crisp": true,
-      "category": 'sweet'
+      "category": 2
     }
     ];
       
@@ -68,7 +68,7 @@ describe('app routes', () => {
   });
 
 
-  test('returns a single lacroixs', async() => {
+  test.only('returns a single lacroixs', async() => {
       const expectation = {
         "id": 1,
         "name": "Lemon Cello",
@@ -81,7 +81,7 @@ describe('app routes', () => {
       const data = await fakeRequest(app)
         .get('/lacroixs/1')
         .expect('Content-Type', /json/)
-        .expect(500);
+        .expect(200);
   
       expect(data.body).toEqual(expectation);
     });
